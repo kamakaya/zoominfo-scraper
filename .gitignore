@@ -1,4 +1,4 @@
 *.ipynb*
 .env
-.csv
+*.csv
 .DS_Store

@@ -1,14 +1,20 @@
 from playwright.sync_api import Playwright, sync_playwright
 import pandas as pd
+import os
 
-USERNAME = 'brd-customer-hl_7151f78f-zone-scraping_browser1'
-PASSWORD = '8t6f75tr72zc'
-# AUTH = 'brd-customer-hl_7151f78f-zone-scraping_browser1:8t6f75tr72zc'  
+USE_PROXIES = os.environ.get('USE_PROXIES')
+
+USERNAME = os.environ.get('BRIGHTDATA_USERNAME')
+PASSWORD = os.environ.get('BRIGHTDATA_PASSWORD')
 SBR_WS_CDP = f'wss://{USERNAME}:{PASSWORD}@brd.superproxy.io:9222' 
 
 def launch_browser(playwright: Playwright):
-    # browser = playwright.chromium.launch(headless=False)
-    browser = playwright.chromium.connect_over_cdp(SBR_WS_CDP)  
+    
+    if USE_PROXIES:
+        browser = playwright.chromium.connect_over_cdp(SBR_WS_CDP)  
+    else:
+        browser = playwright.chromium.launch(headless=False)
+        
     context = browser.new_context()
     page = context.new_page()
 

@@ -1,6 +1,6 @@
 # Zoominfo Scraper
 
-This is a simple python script used to extract basic information from zoominfo without having an enterprise account. My wife works in tech sales, and I built this to easily prospecting data for her.
+This is a simple python script used to extract basic information from zoominfo without having an enterprise account. My wife works in tech sales, and I built this to streamline customer prospecting for her.
 It uses playwright to scrape data from the website, and brightdata to rotate through proxies to avoid getting blocked.
 
 The setup is pretty easy:
